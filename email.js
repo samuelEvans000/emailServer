@@ -8,14 +8,20 @@ const port = 5000;
 const app = express();
 app.use(bodyParser.json());
 
-// Configure CORS
-const corsOptions = {
-  origin: '*', // Allow your frontend domain
-  methods: '*', // Allow these methods
-  allowedHeaders: '*', // Allow these headers
-};
+// Enable All CORS Requests
+app.use(cors());
 
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://portfolio-two-lake-84.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.send();
+});
 
 app.post("/send", (req, res) => {
   const { fullName, email, contact, message } = req.body;
