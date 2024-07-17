@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 // Configure CORS
 const corsOptions = {
-  origin: 'https://portfolio-two-lake-84.vercel.app', // Allow your frontend domain
+  origin: '*', // Allow your frontend domain
   methods: 'GET,POST', // Allow these methods
   allowedHeaders: 'Content-Type,Authorization', // Allow these headers
 };
