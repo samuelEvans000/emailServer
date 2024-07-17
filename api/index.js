@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
 
-const port = 5000;
+// const port = 3000;
 const app = express();
 app.use(bodyParser.json());
 
@@ -23,6 +23,7 @@ app.options("*", (req, res) => {
   res.send();
 });
 
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.post("/send", (req, res) => {
   const { fullName, email, contact, message } = req.body;
 
@@ -58,6 +59,6 @@ app.post("/send", (req, res) => {
   sendMail(transporter, mailOptions);
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(3001, () => {
+  console.log(`Server running at http://localhost:3001`);
 });
